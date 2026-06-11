@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Bakery Naichii - Toko Roti & Kue Premium</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Swiper Slider -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #FFF5EB;
+            --cream-dark: #FDF0E0;
+            --brown: #8B5E3C;
+            --brown-light: #A0784C;
+            --white: #FFFFFF;
+            --pink-pastel: #FFD1DC;
+            --gold: #D4AF37;
+            --gold-light: #FFD700;
+            --dark: #4A3728;
+            --gray: #6B5B4F;
+            --gray-light: #E8E0D8;
+            --success: #4CAF50;
+            --danger: #FF6B6B;
+            --warning: #FFA502;
+            --shadow: 0 10px 40px rgba(0,0,0,0.08);
+            --shadow-hover: 0 20px 50px rgba(0,0,0,0.12);
+            --radius: 1rem;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 100%);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--gray-light);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--brown);
+            border-radius: 10px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            padding: 1rem 2rem;
+        }
+        .navbar-scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            padding: 0.75rem 2rem;
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .logo i {
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            color: var(--gold);
+            font-size: 2rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: var(--white);
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .search-bar input {
+            border: none;
+            outline: none;
+            padding: 0.5rem;
+            width: 250px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .search-bar button {
+            background: var(--brown);
+            border: none;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .search-bar button:hover {
+            background: var(--gold);
+        }
+        .cart-icon {
+            position: relative;
+            font-size: 1.4rem;
+            color: var(--brown);
+            cursor: pointer;
+        }
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background: var(--danger);
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--brown);
+            color: white;
+            padding: 0.75rem 1.8rem;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+        .btn-primary:hover {
+            background: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--brown);
+            color: var(--brown);
+            padding: 0.7rem 1.6rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-outline:hover {
+            background: var(--brown);
+            color: white;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-slider {
+            margin-top: 80px;
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+        .swiper-slide {
+            position: relative;
+            height: 500px;
+            border-radius: var(--radius);
+        }
+        .slide-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+        }
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            padding: 3rem;
+            background: linear-gradient(90deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 100%);
+            color: white;
+        }
+        .slide-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            text-align: center;
+            margin: 3rem 0 2rem;
+            position: relative;
+        }
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--gold);
+            margin: 0.5rem auto;
+        }
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .category-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: var(--shadow);
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        .category-card i {
+            font-size: 3rem;
+            color: var(--gold);
+        }
+        .category-card h3 {
+            margin-top: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .product-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: 0.3s;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--danger);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            z-index: 2;
+        }
+        .product-badge.best {
+            background: var(--gold);
+            left: auto;
+            right: 1rem;
+        }
+        .product-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+        .product-actions {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.8rem;
+            background: rgba(255,255,255,0.95);
+            transition: 0.3s;
+        }
+        .product-card:hover .product-actions {
+            bottom: 0;
+        }
+        .product-actions button {
+            background: var(--brown);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        .product-info {
+            padding: 1rem;
+        }
+        .product-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .product-price {
+            color: var(--brown);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .product-price old {
+            font-size: 0.9rem;
+            color: gray;
+            text-decoration: line-through;
+            margin-left: 0.5rem;
+        }
+        .product-rating {
+            color: var(--warning);
+            font-size: 0.85rem;
+            margin: 0.3rem 0;
+        }
+
+        .flash-sale {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin: 2rem 0;
+            color: white;
+        }
+        .flash-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+        .countdown {
+            display: flex;
+            gap: 0.8rem;
+        }
+        .countdown-item {
+            background: white;
+            color: var(--danger);
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .countdown-item span {
+            font-size: 1.5rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            border-radius: var(--radius);
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        .cart-total {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 1rem 0;
+            text-align: right;
+        }
+
+        .footer {
+            background: #2C2418;
+            color: #D4C5B0;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .footer-col h4 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .social-links a {
+            color: #D4C5B0;
+            margin-right: 1rem;
+            font-size: 1.3rem;
+            transition: 0.3s;
+        }
+        .social-links a:hover {
+            color: var(--gold);
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid #3D3323;
+        }
+
+        @media (max-width: 1024px) {
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                background: white;
+                padding: 1rem;
+                margin-top: 1rem;
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+            }
+            .search-bar input {
+                width: 150px;
+            }
+            .slide-content h2 {
+                font-size: 1.8rem;
+            }
+        }
+        @media (max-width: 640px) {
+            .container {
+                padding: 0 1rem;
+            }
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <i class="fas fa-croissant"></i>
+            <span>Bakery Naichii</span>
+        </div>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Cari croissant, cake, pastry...">
+            <button id="searchBtn"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="#">Beranda</a>
+            <a href="#produk">Produk</a>
+            <a href="#kategori">Kategori</a>
+            <a href="#promo">Promo</a>
+            <a href="#tentang">Tentang Kami</a>
+            <a href="#" id="cartBtnNav"><i class="fas fa-shopping-bag"></i> Keranjang <span id="cartCountNav" class="cart-count" style="position: relative; top: -8px; right: unset; margin-left: 5px;">0</span></a>
+        </div>
+        <div class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</nav>
+
+<div class="container hero-slider">
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=1200');"></div>
+                <div class="slide-content">
+                    <h2>Diskon 50% untuk Cake Ulang Tahun!</h2>
+                    <p>Kue spesial untuk momen spesialmu</p>
+                    <button class="btn-primary" style="width: fit-content;">Lihat Promo →</button>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1587668178277-295251f900ce?w=1200');"></div>
+                <div class="slide-content">
+                    <h2>Beli 2 Croissant Gratis 1 Coffee</h2>
+                    <p>Nikmati sarapan spesial bersama Bakery Naichii</p>
+                    <button class="btn-primary" style="width: fit-content;">Pesan Sekarang →</button>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=1200');"></div>
+                <div class="slide-content">
+                    <h2>Flash Sale Setiap Jam 12-13 WIB</h2>
+                    <p>Diskon hingga 70% untuk pastry pilihan</p>
+                    <button class="btn-primary" style="width: fit-content;">Kejar Diskon →</button>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+
+<div class="container">
+    <section id="kategori">
+        <h2 class="section-title">Kategori Favorit</h2>
+        <div class="categories-grid" id="categoriesGrid"></div>
+    </section>
+
+    <div class="flash-sale" id="flashSale">
+        <div class="flash-header">
+            <h2><i class="fas fa-bolt"></i> Flash Sale</h2>
+            <div class="countdown" id="countdown">
+                <div class="countdown-item"><span id="hours">02</span><br>Jam</div>
+                <div class="countdown-item"><span id="minutes">30</span><br>Menit</div>
+                <div class="countdown-item"><span id="seconds">00</span><br>Detik</div>
+            </div>
+        </div>
+        <div class="products-grid" id="flashProducts"></div>
+    </div>
+
+    <section id="produk">
+        <h2 class="section-title">🔥 Produk Terlaris</h2>
+        <div class="products-grid" id="bestSellerProducts"></div>
+
+        <h2 class="section-title">✨ Produk Terbaru</h2>
+        <div class="products-grid" id="newProducts"></div>
+
+        <h2 class="section-title">💖 Rekomendasi Untukmu</h2>
+        <div class="products-grid" id="recommendedProducts"></div>
+    </section>
+
+    <section>
+        <h2 class="section-title">Apa Kata Mereka?</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1.5rem; margin: 2rem 0;">
+            <div style="background: white; padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow);">
+                <i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i>
+                <p style="margin: 1rem 0;">"Cakenya enak banget! Lembut dan manisnya pas. Pengiriman juga cepat."</p>
+                <h4>- Sarah</h4>
+            </div>
+            <div style="background: white; padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow);">
+                <i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i>
+                <p style="margin: 1rem 0;">"Croissantnya renyah dan buttery. Bakery Naichii memang yang terbaik!"</p>
+                <h4>- Andi</h4>
+            </div>
+            <div style="background: white; padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow);">
+                <i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star-half-alt" style="color: gold;"></i>
+                <p style="margin: 1rem 0;">"Pastrynya fresh dan variannya banyak. Recommended!"</p>
+                <h4>- Lisa</h4>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="cartModal" class="modal">
+    <div class="modal-content">
+        <h3>Keranjang Belanja <i class="fas fa-shopping-bag"></i></h3>
+        <div id="cartItems"></div>
+        <div class="cart-total" id="cartTotal">Total: Rp 0</div>
+        <button class="btn-primary" id="checkoutBtn" style="width: 100%;">Checkout</button>
+        <button class="btn-outline" id="closeModalBtn" style="margin-top: 10px; width: 100%;">Tutup</button>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>Bakery Naichii</h4>
+            <p>Kelezatan roti dan kue premium untuk setiap momen istimewa.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Kontak</h4>
+            <p><i class="fas fa-map-marker-alt"></i> Jl. Raya Bakery No. 123, Jakarta</p>
+            <p><i class="fas fa-phone"></i> +62 812 3456 7890</p>
+            <p><i class="fas fa-envelope"></i> hello@bakerynaichii.com</p>
+        </div>
+        <div class="footer-col">
+            <h4>Jam Operasional</h4>
+            <p>Senin - Minggu: 08:00 - 21:00</p>
+            <p>24 Jam untuk pemesanan online</p>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>&copy; 2025 Bakery Naichii - Delight Every Bite. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    // ==================== DATA PRODUK DENGAN GAMBAR SESUAI VARIAN ====================
+    const products = [
+        { id: 1, name: "Croissant Classic", price: 25000, discount_price: 18000, image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400", rating: 4.8, sold: 120, isBestSeller: true, isNew: false, flashSale: true, category: "Croissant", stock: 50, variant: "Buttery & Crispy" },
+        { id: 2, name: "Chocolate Cake", price: 150000, discount_price: 99000, image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400", rating: 4.9, sold: 85, isBestSeller: true, isNew: false, flashSale: true, category: "Cake", stock: 20, variant: "Rich Chocolate" },
+        { id: 3, name: "Strawberry Danish", price: 32000, discount_price: 25000, image: "https://images.unsplash.com/photo-1550617931-e17a7b70dce2?w=400", rating: 4.7, sold: 64, isBestSeller: false, isNew: true, flashSale: false, category: "Pastry", stock: 35, variant: "Fresh Strawberry" },
+        { id: 4, name: "Matcha Latte", price: 28000, discount_price: null, image: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=400", rating: 4.6, sold: 42, isBestSeller: false, isNew: true, flashSale: false, category: "Minuman", stock: 100, variant: "Premium Matcha" },
+        { id: 5, name: "Red Velvet Cake", price: 180000, discount_price: 129000, image: "https://images.unsplash.com/photo-1586788224331-947f68671cf1?w=400", rating: 4.9, sold: 95, isBestSeller: true, isNew: false, flashSale: false, category: "Cake", stock: 15, variant: "Cream Cheese Frosting" },
+        { id: 6, name: "Pain au Chocolat", price: 30000, discount_price: 22000, image: "https://images.unsplash.com/photo-1623334044303-241021148842?w=400", rating: 4.8, sold: 78, isBestSeller: false, isNew: false, flashSale: true, category: "Pastry", stock: 40, variant: "Dark Chocolate Filling" },
+        { id: 7, name: "Caramel Macchiato", price: 35000, discount_price: null, image: "https://images.unsplash.com/photo-1485808191679-5f86510681a2?w=400", rating: 4.7, sold: 53, isBestSeller: false, isNew: true, flashSale: false, category: "Minuman", stock: 60, variant: "Caramel Drizzle" },
+        { id: 8, name: "Fruit Tart", price: 45000, discount_price: 35000, image: "https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?w=400", rating: 4.8, sold: 67, isBestSeller: true, isNew: false, flashSale: false, category: "Dessert", stock: 25, variant: "Mixed Berries" },
+        { id: 9, name: "Roti Tawar Gandum", price: 22000, discount_price: 18000, image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400", rating: 4.5, sold: 110, isBestSeller: false, isNew: false, flashSale: false, category: "Roti", stock: 80, variant: "Whole Wheat" },
+        { id: 10, name: "Mille Crepe", price: 55000, discount_price: 45000, image: "https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=400", rating: 4.9, sold: 45, isBestSeller: false, isNew: true, flashSale: false, category: "Dessert", stock: 30, variant: "20 Layers" },
+        { id: 11, name: "Almond Croissant", price: 28000, discount_price: 22000, image: "https://images.unsplash.com/photo-1550617931-e17a7b70dce2?w=400", rating: 4.8, sold: 56, isBestSeller: false, isNew: true, flashSale: false, category: "Croissant", stock: 45, variant: "Toasted Almond" },
+        { id: 12, name: "Blueberry Cheesecake", price: 65000, discount_price: 50000, image: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=400", rating: 4.9, sold: 72, isBestSeller: true, isNew: false, flashSale: false, category: "Cake", stock: 18, variant: "Creamy Cheesecake" }
+    ];
+
+    const categories = [
+        { name: "Cake", icon: "fa-cake-candles" },
+        { name: "Croissant", icon: "fa-croissant" },
+        { name: "Pastry", icon: "fa-bread-slice" },
+        { name: "Dessert", icon: "fa-ice-cream" },
+        { name: "Minuman", icon: "fa-mug-hot" },
+        { name: "Roti", icon: "fa-baguette" }
+    ];
+
+    let cart = JSON.parse(localStorage.getItem('naichiiCart')) || [];
+
+    function saveCart() {
+        localStorage.setItem('naichiiCart', JSON.stringify(cart));
+        updateCartUI();
+    }
+
+    function updateCartUI() {
+        const count = cart.reduce((sum, item) => sum + item.qty, 0);
+        document.getElementById('cartCountNav').innerText = count;
+        renderCartModal();
+    }
+
+    function addToCart(product) {
+        const existing = cart.find(item => item.id === product.id);
+        if (existing) {
+            existing.qty += 1;
+        } else {
+            cart.push({ ...product, qty: 1 });
+        }
+        saveCart();
+        alert(`${product.name} (${product.variant}) ditambahkan ke keranjang!`);
+    }
+
+    function renderCartModal() {
+        const container = document.getElementById('cartItems');
+        if (!container) return;
+        if (cart.length === 0) {
+            container.innerHTML = '<p>Keranjang kosong</p>';
+            document.getElementById('cartTotal').innerText = 'Total: Rp 0';
+            return;
+        }
+        let total = 0;
+        let html = '';
+        cart.forEach((item, idx) => {
+            const price = item.discount_price || item.price;
+            const subtotal = price * item.qty;
+            total += subtotal;
+            html += `
+                <div class="cart-item">
+                    <div><strong>${item.name}</strong><br><small>${item.variant}</small><br>Rp ${price.toLocaleString()} x ${item.qty}</div>
+                    <div>
+                        <button onclick="updateQty(${idx}, -1)">-</button>
+                        <span>${item.qty}</span>
+                        <button onclick="updateQty(${idx}, 1)">+</button>
+                        <button onclick="removeFromCart(${idx})" style="background:red;color:white;border:none;padding:5px 10px;border-radius:50%;margin-left:5px;"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+        document.getElementById('cartTotal').innerHTML = `Total: Rp ${total.toLocaleString()}`;
+    }
+
+    window.updateQty = (idx, delta) => {
+        const newQty = cart[idx].qty + delta;
+        if (newQty <= 0) {
+            cart.splice(idx, 1);
+        } else {
+            cart[idx].qty = newQty;
+        }
+        saveCart();
+    };
+
+    window.removeFromCart = (idx) => {
+        cart.splice(idx, 1);
+        saveCart();
+    };
+
+    function renderProducts(containerId, productList) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        if (productList.length === 0) {
+            container.innerHTML = '<p>Tidak ada produk</p>';
+            return;
+        }
+        container.innerHTML = productList.map(p => {
+            const price = p.discount_price || p.price;
+            const oldPrice = p.discount_price ? p.price : null;
+            const badge = p.flashSale ? '<span class="product-badge">FLASH SALE</span>' : (p.isBestSeller ? '<span class="product-badge best">BEST SELLER</span>' : '');
+            return `
+                <div class="product-card">
+                    ${badge}
+                    <div class="product-image">
+                        <img src="${p.image}" alt="${p.name}">
+                        <div class="product-actions">
+                            <button onclick="quickView(${p.id})"><i class="fas fa-eye"></i> Lihat</button>
+                            <button onclick="addToCartById(${p.id})"><i class="fas fa-cart-plus"></i> Keranjang</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">${p.name}</div>
+                        <div class="product-rating" style="font-size:0.7rem; color:var(--brown);">
+                            <i class="fas fa-tag"></i> ${p.variant}
+                        </div>
+                        <div class="product-price">
+                            Rp ${price.toLocaleString()}
+                            ${oldPrice ? `<old>Rp ${oldPrice.toLocaleString()}</old>` : ''}
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i> ${p.rating} | Terjual ${p.sold}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    window.addToCartById = (id) => {
+        const product = products.find(p => p.id === id);
+        if (product) addToCart(product);
+    };
+
+    window.quickView = (id) => {
+        const product = products.find(p => p.id === id);
+        alert(`🍰 ${product.name}\n✨ Varian: ${product.variant}\n💰 Harga: Rp ${(product.discount_price || product.price).toLocaleString()}\n⭐ Rating: ${product.rating}\n📦 Stok: ${product.stock} pcs`);
+    };
+
+    function initHome() {
+        const catContainer = document.getElementById('categoriesGrid');
+        if (catContainer) {
+            catContainer.innerHTML = categories.map(cat => `
+                <div class="category-card" onclick="filterByCategory('${cat.name}')">
+                    <i class="fas ${cat.icon}"></i>
+                    <h3>${cat.name}</h3>
+                </div>
+            `).join('');
+        }
+
+        renderProducts('bestSellerProducts', products.filter(p => p.isBestSeller));
+        renderProducts('newProducts', products.filter(p => p.isNew));
+        renderProducts('recommendedProducts', products.slice(0, 6));
+        renderProducts('flashProducts', products.filter(p => p.flashSale));
+
+        function startCountdown() {
+            const endTime = new Date().getTime() + (2 * 60 * 60 * 1000);
+            const timer = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = endTime - now;
+                if (distance < 0) {
+                    clearInterval(timer);
+                    document.getElementById('hours').innerText = "00";
+                    document.getElementById('minutes').innerText = "00";
+                    document.getElementById('seconds').innerText = "00";
+                } else {
+                    const hours = Math.floor((distance % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+                    const minutes = Math.floor((distance % (60 * 60 * 1000)) / (60 * 1000));
+                    const seconds = Math.floor((distance % (60 * 1000)) / 1000);
+                    document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+                    document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+                    document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+                }
+            }, 1000);
+        }
+        startCountdown();
+    }
+
+    window.filterByCategory = (cat) => {
+        const filtered = products.filter(p => p.category === cat);
+        renderProducts('recommendedProducts', filtered);
+        document.getElementById('recommendedProducts').scrollIntoView({ behavior: 'smooth' });
+    };
+
+    document.getElementById('searchBtn')?.addEventListener('click', () => {
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        const filtered = products.filter(p => p.name.toLowerCase().includes(query) || p.variant.toLowerCase().includes(query));
+        renderProducts('recommendedProducts', filtered);
+        document.getElementById('recommendedProducts').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    const modal = document.getElementById('cartModal');
+    document.getElementById('cartBtnNav')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        renderCartModal();
+        modal.style.display = 'flex';
+    });
+    document.getElementById('closeModalBtn')?.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+    window.onclick = (e) => {
+        if (e.target === modal) modal.style.display = 'none';
+    };
+    document.getElementById('checkoutBtn')?.addEventListener('click', () => {
+        if (cart.length === 0) {
+            alert("Keranjang masih kosong!");
+            return;
+        }
+        alert("Terima kasih telah berbelanja di Bakery Naichii! Pesanan Anda akan segera diproses.");
+        cart = [];
+        saveCart();
+        modal.style.display = 'none';
+    });
+
+    window.addEventListener('scroll', () => {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('navbar-scrolled');
+        } else {
+            navbar.classList.remove('navbar-scrolled');
+        }
+    });
+
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    mobileBtn?.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+
+    new Swiper('.mySwiper', {
+        loop: true,
+        autoplay: { delay: 4000 },
+        pagination: { el: '.swiper-pagination', clickable: true },
+    });
+
+    initHome();
+    updateCartUI();
+</script>
+</body>
+</html>

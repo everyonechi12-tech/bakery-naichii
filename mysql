@@ -1,0 +1,161 @@
+-- Database: bakery_chii
+CREATE DATABASE bakery_chii;
+USE bakery_chii;
+
+-- Users table
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) UNIQUE,
+    email VARCHAR(100) UNIQUE,
+    password VARCHAR(255),
+    full_name VARCHAR(100),
+    phone VARCHAR(20),
+    address TEXT,
+    avatar VARCHAR(255),
+    role ENUM('user', 'admin') DEFAULT 'user',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Categories table
+CREATE TABLE categories (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50),
+    icon VARCHAR(100),
+    image VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Products table
+CREATE TABLE products (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(200),
+    description TEXT,
+    price DECIMAL(10,2),
+    discount_price DECIMAL(10,2),
+    stock INT DEFAULT 0,
+    rating DECIMAL(3,2) DEFAULT 0,
+    sold_count INT DEFAULT 0,
+    category_id INT,
+    main_image VARCHAR(255),
+    is_best_seller BOOLEAN DEFAULT FALSE,
+    is_new BOOLEAN DEFAULT FALSE,
+    flash_sale_end DATETIME,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (category_id) REFERENCES categories(id)
+);
+
+-- Product images
+CREATE TABLE product_images (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    product_id INT,
+    image_url VARCHAR(255),
+    is_primary BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+);
+
+-- Product variants
+CREATE TABLE product_variants (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    product_id INT,
+    variant_type ENUM('size', 'flavor', 'topping', 'decoration'),
+    variant_name VARCHAR(50),
+    variant_value VARCHAR(50),
+    price_adjustment DECIMAL(10,2) DEFAULT 0,
+    stock INT DEFAULT 0,
+    image VARCHAR(255),
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+);
+
+-- Promos & Vouchers
+CREATE TABLE promos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    code VARCHAR(50) UNIQUE,
+    description VARCHAR(255),
+    discount_type ENUM('percentage', 'fixed'),
+    discount_value DECIMAL(10,2),
+    min_purchase DECIMAL(10,2),
+    max_discount DECIMAL(10,2),
+    valid_from DATETIME,
+    valid_until DATETIME,
+    usage_limit INT,
+    used_count INT DEFAULT 0
+);
+
+-- Orders
+CREATE TABLE orders (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    order_number VARCHAR(50) UNIQUE,
+    total_amount DECIMAL(10,2),
+    shipping_cost DECIMAL(10,2),
+    discount_amount DECIMAL(10,2),
+    grand_total DECIMAL(10,2),
+    status ENUM('pending', 'processing', 'shipped', 'delivered', 'cancelled') DEFAULT 'pending',
+    payment_status ENUM('unpaid', 'paid', 'failed') DEFAULT 'unpaid',
+    shipping_address TEXT,
+    shipping_courier VARCHAR(50),
+    tracking_number VARCHAR(100),
+    payment_method VARCHAR(50),
+    notes TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+-- Order details
+CREATE TABLE order_details (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    order_id INT,
+    product_id INT,
+    variant_id INT,
+    quantity INT,
+    price DECIMAL(10,2),
+    subtotal DECIMAL(10,2),
+    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(id)
+);
+
+-- Reviews
+CREATE TABLE reviews (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    product_id INT,
+    order_id INT,
+    rating INT CHECK (rating >= 1 AND rating <= 5),
+    comment TEXT,
+    images TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (product_id) REFERENCES products(id)
+);
+
+-- Wishlist
+CREATE TABLE wishlist (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    product_id INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (product_id) REFERENCES products(id),
+    UNIQUE KEY unique_wishlist (user_id, product_id)
+);
+
+-- Notifications
+CREATE TABLE notifications (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    title VARCHAR(100),
+    message TEXT,
+    is_read BOOLEAN DEFAULT FALSE,
+    type ENUM('promo', 'order', 'system'),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+-- Insert sample categories
+INSERT INTO categories (name, icon, image) VALUES
+('Cake', '🎂', '/images/categories/cake.jpg'),
+('Croissant', '🥐', '/images/categories/croissant.jpg'),
+('Pastry', '🥧', '/images/categories/pastry.jpg'),
+('Dessert', '🍰', '/images/categories/dessert.jpg'),
+('Minuman', '☕', '/images/categories/drink.jpg'),
+('Roti', '🍞', '/images/categories/bread.jpg');

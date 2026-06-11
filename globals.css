@@ -1,0 +1,82 @@
+/* app/globals.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 98%;
+    --foreground: 30 20% 20%;
+    --card: 40 33% 100%;
+    --card-foreground: 30 20% 20%;
+    --primary: 30 50% 45%;
+    --primary-foreground: 40 33% 98%;
+    --secondary: 350 70% 85%;
+    --secondary-foreground: 30 50% 35%;
+    --muted: 40 20% 90%;
+    --muted-foreground: 30 10% 40%;
+    --accent: 45 80% 60%;
+    --accent-foreground: 30 50% 25%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 30 15% 85%;
+    --input: 30 15% 85%;
+    --ring: 30 50% 45%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 30 15% 15%;
+    --foreground: 40 20% 90%;
+    --card: 30 15% 18%;
+    --card-foreground: 40 20% 90%;
+    --primary: 30 50% 55%;
+    --primary-foreground: 30 20% 10%;
+    --secondary: 350 50% 35%;
+    --secondary-foreground: 40 20% 90%;
+    --muted: 30 15% 25%;
+    --muted-foreground: 40 15% 70%;
+    --accent: 45 60% 50%;
+    --accent-foreground: 30 20% 10%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Poppins', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer components {
+  .bakery-gradient {
+    background: linear-gradient(135deg, #FFF5EB 0%, #FDF0E0 100%);
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-2xl hover:-translate-y-1;
+  }
+  
+  .gold-text {
+    background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #DAA520 100%);
+    @apply bg-clip-text text-transparent;
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-primary-foreground px-6 py-2 rounded-full font-semibold 
+           transition-all duration-300 hover:bg-primary/90 hover:shadow-lg;
+  }
+  
+  .btn-secondary {
+    @apply bg-accent text-accent-foreground px-6 py-2 rounded-full font-semibold 
+           transition-all duration-300 hover:bg-accent/90 hover:shadow-lg;
+  }
+}
