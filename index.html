@@ -504,6 +504,25 @@
                 gap: 1rem;
             }
         }
+        /* Admin floating button */
+        .admin-fab{
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            z-index: 2001;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            background: var(--brown);
+            color: white;
+            border-radius: 999px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .admin-fab i{ font-size: 1rem; }
+        .admin-fab:hover{ transform: translateY(-3px); background: var(--gold); color: #222; }
     </style>
 </head>
 <body>
@@ -654,6 +673,8 @@
         <p>&copy; 2025 Bakery Naichii - Delight Every Bite. All rights reserved.</p>
     </div>
 </footer>
+
+<a href="admin/" class="admin-fab" id="adminFab" title="Admin Panel"><i class="fas fa-user-shield"></i> Admin</a>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
