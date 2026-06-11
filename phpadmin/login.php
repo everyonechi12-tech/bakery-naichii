@@ -25,21 +25,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
-        $error = 'Username atau password admin salah.';
+        $error = 'Username atau password salah.';
     }
 }
-?>
-<!doctype html>
+?><!doctype html>
 <html lang="id">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin Login - Bakery Naichii</title>
+    <title>Login Admin - Bakery Naichii</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="admin-wrap">
-        <h1>Admin Login</h1>
+        <h1>Login Admin</h1>
         <?php if ($error): ?>
             <div class="alert error"><?= htmlspecialchars($error) ?></div>
         <?php endif; ?>
@@ -51,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit" class="btn">Masuk</button>
         </form>
         <p>Gunakan akun admin default <strong>admin</strong> / <strong>admin123</strong>.</p>
-        <p>Jika belum diinstall, jalankan <a href="install.php">install database</a>.</p>
+        <p><a href="install.php">Install database</a></p>
     </div>
 </body>
 </html>

@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Database configuration
 const DB_HOST = '127.0.0.1';
 const DB_USER = 'root';
 const DB_PASS = '';
@@ -12,13 +11,19 @@ if ($mysqli->connect_errno) {
     die('Database connection failed: ' . $mysqli->connect_error);
 }
 $mysqli->set_charset('utf8mb4');
-if (!$mysqli->select_db(DB_NAME)) {
-    // Database may not exist yet during installation.
+
+function get_mysqli()
+{
+    global $mysqli;
+    return $mysqli;
 }
 
 function db()
 {
-    global $mysqli;
+    $mysqli = get_mysqli();
+    if (!$mysqli->select_db(DB_NAME)) {
+        die('Database belum diinstall. Jalankan install.php');
+    }
     return $mysqli;
 }
 
