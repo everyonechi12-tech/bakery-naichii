@@ -1,0 +1,14 @@
+body{ font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background: #f6f3f0; color:#222; }
+.admin-wrap{ max-width:920px; margin:48px auto; padding:24px; }
+.admin-header{ display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; }
+.card{ background:white; padding:16px; border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,0.06); margin-bottom:16px; }
+.btn{ background:#8B5E3C; color:white; border:none; padding:10px 14px; border-radius:8px; cursor:pointer; }
+.btn.outline{ background:transparent; border:1px solid #8B5E3C; color:#8B5E3C; }
+.btn.danger{ background:#FF6B6B; }
+form input, form textarea{ width:100%; padding:8px 10px; margin:8px 0 12px; border-radius:8px; border:1px solid #e6e0da; }
+.hint{ margin-top:12px; color:#666; }
+.product-row{ display:flex; gap:12px; align-items:center; padding:12px 0; border-bottom:1px solid #f0ebe6; }
+.product-row img{ width:120px; height:80px; object-fit:cover; border-radius:8px; }
+.prod-mid{ flex:1; }
+.muted{ color:#7a6b60; font-size:0.9rem; margin-top:6px; }
+.prod-actions{ width:140px; text-align:right; }

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin Login - Bakery Naichii</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="admin-wrap">
+    <h1>Login Admin</h1>
+    <form id="loginForm">
+      <label>Username</label>
+      <input type="text" id="username" required autocomplete="username">
+      <label>Password</label>
+      <input type="password" id="password" required autocomplete="current-password">
+      <button type="submit" class="btn">Masuk</button>
+    </form>
+    <p class="hint">Gunakan <strong>admin</strong> / <strong>password123</strong></p>
+  </div>
+
+  <script src="admin.js"></script>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const u = document.getElementById('username').value.trim();
+      const p = document.getElementById('password').value;
+      if (window.adminAuthLogin) window.adminAuthLogin(u, p);
+    });
+  </script>
+</body>
+</html>

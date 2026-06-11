@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dashboard Admin - Bakery Naichii</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="admin-wrap">
+    <header class="admin-header">
+      <h1>Dashboard Admin</h1>
+      <div>
+        <button id="logoutBtn" class="btn outline">Logout</button>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2>Tambah Produk</h2>
+      <form id="productForm">
+        <label>Nama Produk</label>
+        <input id="p_name" required>
+        <label>Harga (angka)</label>
+        <input id="p_price" type="number" required>
+        <label>Deskripsi</label>
+        <textarea id="p_desc"></textarea>
+        <label>URL Gambar (opsional)</label>
+        <input id="p_image" placeholder="https://...">
+        <button type="submit" class="btn">Tambah Produk</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Daftar Produk</h2>
+      <div id="product-list"></div>
+    </section>
+  </div>
+
+  <script src="admin.js"></script>
+  <script>
+    // require auth and initialize
+    if (window.requireAdminAuth) window.requireAdminAuth();
+    document.getElementById('logoutBtn').addEventListener('click', function(){ if (window.adminLogout) window.adminLogout(); });
+    document.getElementById('productForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const prod = {
+        name: document.getElementById('p_name').value.trim(),
+        price: Number(document.getElementById('p_price').value) || 0,
+        description: document.getElementById('p_desc').value.trim(),
+        image: document.getElementById('p_image').value.trim()
+      };
+      if (window.addAdminProduct) window.addAdminProduct(prod);
+      this.reset();
+    });
+    if (window.renderProducts) window.renderProducts();
+  </script>
+</body>
+</html>
