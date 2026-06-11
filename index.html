@@ -703,6 +703,35 @@
         { name: "Roti", icon: "fa-baguette" }
     ];
 
+    // Ambil produk yang ditambahkan via admin (localStorage) dan normalisasi fields
+    function getAdminProducts(){
+        try{
+            const raw = JSON.parse(localStorage.getItem('naichiiProducts')||'[]');
+            return raw.map(p => ({
+                id: p.id || Date.now()+Math.floor(Math.random()*1000),
+                name: p.name || 'Produk Baru',
+                price: Number(p.price) || 0,
+                discount_price: p.discount_price || null,
+                image: p.image || 'https://via.placeholder.com/400x300?text=No+Image',
+                rating: p.rating || 4.5,
+                sold: p.sold || 0,
+                isBestSeller: p.isBestSeller || false,
+                isNew: p.isNew !== undefined ? p.isNew : true,
+                flashSale: p.flashSale || false,
+                category: p.category || 'Uncategorized',
+                stock: p.stock || 999,
+                variant: p.variant || '',
+                description: p.description || ''
+            }));
+        }catch(e){ return []; }
+    }
+
+    function getAllProducts(){
+        const admin = getAdminProducts();
+        // tampilkan produk admin terlebih dahulu, lalu produk default
+        return admin.concat(products);
+    }
+
     let cart = JSON.parse(localStorage.getItem('naichiiCart')) || [];
 
     function saveCart() {
@@ -812,13 +841,14 @@
     }
 
     window.addToCartById = (id) => {
-        const product = products.find(p => p.id === id);
+        const product = getAllProducts().find(p => p.id === id);
         if (product) addToCart(product);
     };
 
     window.quickView = (id) => {
-        const product = products.find(p => p.id === id);
-        alert(`🍰 ${product.name}\n✨ Varian: ${product.variant}\n💰 Harga: Rp ${(product.discount_price || product.price).toLocaleString()}\n⭐ Rating: ${product.rating}\n📦 Stok: ${product.stock} pcs`);
+        const product = getAllProducts().find(p => p.id === id);
+        if (!product) return alert('Produk tidak ditemukan');
+        alert(`🍰 ${product.name}\n✨ Varian: ${product.variant}\n💰 Harga: Rp ${(product.discount_price || product.price).toLocaleString()}\n⭐ Rating: ${product.rating}\n📦 Stok: ${product.stock} pcs\n\n${product.description || ''}`);
     };
 
     function initHome() {
@@ -832,10 +862,11 @@
             `).join('');
         }
 
-        renderProducts('bestSellerProducts', products.filter(p => p.isBestSeller));
-        renderProducts('newProducts', products.filter(p => p.isNew));
-        renderProducts('recommendedProducts', products.slice(0, 6));
-        renderProducts('flashProducts', products.filter(p => p.flashSale));
+        const all = getAllProducts();
+        renderProducts('bestSellerProducts', all.filter(p => p.isBestSeller));
+        renderProducts('newProducts', all.filter(p => p.isNew));
+        renderProducts('recommendedProducts', all.slice(0, 6));
+        renderProducts('flashProducts', all.filter(p => p.flashSale));
 
         function startCountdown() {
             const endTime = new Date().getTime() + (2 * 60 * 60 * 1000);
@@ -861,14 +892,14 @@
     }
 
     window.filterByCategory = (cat) => {
-        const filtered = products.filter(p => p.category === cat);
+        const filtered = getAllProducts().filter(p => p.category === cat);
         renderProducts('recommendedProducts', filtered);
         document.getElementById('recommendedProducts').scrollIntoView({ behavior: 'smooth' });
     };
 
     document.getElementById('searchBtn')?.addEventListener('click', () => {
         const query = document.getElementById('searchInput').value.toLowerCase();
-        const filtered = products.filter(p => p.name.toLowerCase().includes(query) || p.variant.toLowerCase().includes(query));
+        const filtered = getAllProducts().filter(p => (p.name||'').toLowerCase().includes(query) || (p.variant||'').toLowerCase().includes(query));
         renderProducts('recommendedProducts', filtered);
         document.getElementById('recommendedProducts').scrollIntoView({ behavior: 'smooth' });
     });
