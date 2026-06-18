@@ -148,7 +148,7 @@ $products = db()->query('SELECT p.*, c.name AS category_name FROM products p LEF
                                 <td><?= htmlspecialchars($product['category_name'] ?? '-') ?></td>
                                 <td>Rp <?= number_format($product['price'], 0, ',', '.') ?></td>
                                 <td><?= $product['stock'] ?></td>
-                                <td><img class="product-thumb" src="<?= htmlspecialchars($product['main_image'] ?: 'https://via.placeholder.com/80') ?>" alt=""></td>
+                                <td><img class="product-thumb" src="<?= htmlspecialchars($product['main_image'] ?: 'https://via.placeholder.com/80') ?>" alt="<?= htmlspecialchars($product['name']) ?>"></td>
                                 <td>
                                     <form method="post" onsubmit="return confirm('Hapus produk ini?');">
                                         <input type="hidden" name="action" value="delete">

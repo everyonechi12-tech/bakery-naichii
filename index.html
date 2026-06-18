@@ -680,18 +680,18 @@
 <script>
     // ==================== DATA PRODUK DENGAN GAMBAR SESUAI VARIAN ====================
     const products = [
-        { id: 1, name: "Croissant Classic", price: 25000, discount_price: 18000, image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400", rating: 4.8, sold: 120, isBestSeller: true, isNew: false, flashSale: true, category: "Croissant", stock: 50, variant: "Buttery & Crispy" },
-        { id: 2, name: "Chocolate Cake", price: 150000, discount_price: 99000, image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400", rating: 4.9, sold: 85, isBestSeller: true, isNew: false, flashSale: true, category: "Cake", stock: 20, variant: "Rich Chocolate" },
-        { id: 3, name: "Strawberry Danish", price: 32000, discount_price: 25000, image: "https://images.unsplash.com/photo-1550617931-e17a7b70dce2?w=400", rating: 4.7, sold: 64, isBestSeller: false, isNew: true, flashSale: false, category: "Pastry", stock: 35, variant: "Fresh Strawberry" },
-        { id: 4, name: "Matcha Latte", price: 28000, discount_price: null, image: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=400", rating: 4.6, sold: 42, isBestSeller: false, isNew: true, flashSale: false, category: "Minuman", stock: 100, variant: "Premium Matcha" },
-        { id: 5, name: "Red Velvet Cake", price: 180000, discount_price: 129000, image: "https://images.unsplash.com/photo-1586788224331-947f68671cf1?w=400", rating: 4.9, sold: 95, isBestSeller: true, isNew: false, flashSale: false, category: "Cake", stock: 15, variant: "Cream Cheese Frosting" },
-        { id: 6, name: "Pain au Chocolat", price: 30000, discount_price: 22000, image: "https://images.unsplash.com/photo-1623334044303-241021148842?w=400", rating: 4.8, sold: 78, isBestSeller: false, isNew: false, flashSale: true, category: "Pastry", stock: 40, variant: "Dark Chocolate Filling" },
-        { id: 7, name: "Caramel Macchiato", price: 35000, discount_price: null, image: "https://images.unsplash.com/photo-1485808191679-5f86510681a2?w=400", rating: 4.7, sold: 53, isBestSeller: false, isNew: true, flashSale: false, category: "Minuman", stock: 60, variant: "Caramel Drizzle" },
-        { id: 8, name: "Fruit Tart", price: 45000, discount_price: 35000, image: "https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?w=400", rating: 4.8, sold: 67, isBestSeller: true, isNew: false, flashSale: false, category: "Dessert", stock: 25, variant: "Mixed Berries" },
-        { id: 9, name: "Roti Tawar Gandum", price: 22000, discount_price: 18000, image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400", rating: 4.5, sold: 110, isBestSeller: false, isNew: false, flashSale: false, category: "Roti", stock: 80, variant: "Whole Wheat" },
-        { id: 10, name: "Mille Crepe", price: 55000, discount_price: 45000, image: "https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=400", rating: 4.9, sold: 45, isBestSeller: false, isNew: true, flashSale: false, category: "Dessert", stock: 30, variant: "20 Layers" },
-        { id: 11, name: "Almond Croissant", price: 28000, discount_price: 22000, image: "https://images.unsplash.com/photo-1550617931-e17a7b70dce2?w=400", rating: 4.8, sold: 56, isBestSeller: false, isNew: true, flashSale: false, category: "Croissant", stock: 45, variant: "Toasted Almond" },
-        { id: 12, name: "Blueberry Cheesecake", price: 65000, discount_price: 50000, image: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=400", rating: 4.9, sold: 72, isBestSeller: true, isNew: false, flashSale: false, category: "Cake", stock: 18, variant: "Creamy Cheesecake" }
+        { id: 1, name: "Croissant Classic", price: 25000, discount_price: 18000, image: "https://images.unsplash.com/photo-1511381939415-67373f4faa98?w=400", rating: 4.8, sold: 120, isBestSeller: true, isNew: false, flashSale: true, category: "Croissant", stock: 50, variant: "Buttery & Crispy" },
+        { id: 2, name: "Chocolate Cake", price: 150000, discount_price: 99000, image: "https://images.unsplash.com/photo-1542831371-d531d36971e6?w=400", rating: 4.9, sold: 85, isBestSeller: true, isNew: false, flashSale: true, category: "Cake", stock: 20, variant: "Rich Chocolate" },
+        { id: 3, name: "Strawberry Danish", price: 32000, discount_price: 25000, image: "https://images.unsplash.com/photo-1505250469679-203ad9ced0cb?w=400", rating: 4.7, sold: 64, isBestSeller: false, isNew: true, flashSale: false, category: "Pastry", stock: 35, variant: "Fresh Strawberry" },
+        { id: 4, name: "Matcha Latte", price: 28000, discount_price: null, image: "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?w=400", rating: 4.6, sold: 42, isBestSeller: false, isNew: true, flashSale: false, category: "Minuman", stock: 100, variant: "Premium Matcha" },
+        { id: 5, name: "Red Velvet Cake", price: 180000, discount_price: 129000, image: "https://images.unsplash.com/photo-1517685352821-92cf88aee5a5?w=400", rating: 4.9, sold: 95, isBestSeller: true, isNew: false, flashSale: false, category: "Cake", stock: 15, variant: "Cream Cheese Frosting" },
+        { id: 6, name: "Pain au Chocolat", price: 30000, discount_price: 22000, image: "https://images.unsplash.com/photo-1517686469429-b73d1d9f7d2d?w=400", rating: 4.8, sold: 78, isBestSeller: false, isNew: false, flashSale: true, category: "Pastry", stock: 40, variant: "Dark Chocolate Filling" },
+        { id: 7, name: "Caramel Macchiato", price: 35000, discount_price: null, image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400", rating: 4.7, sold: 53, isBestSeller: false, isNew: true, flashSale: false, category: "Minuman", stock: 60, variant: "Caramel Drizzle" },
+        { id: 8, name: "Fruit Tart", price: 45000, discount_price: 35000, image: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400", rating: 4.8, sold: 67, isBestSeller: true, isNew: false, flashSale: false, category: "Dessert", stock: 25, variant: "Mixed Berries" },
+        { id: 9, name: "Roti Tawar Gandum", price: 22000, discount_price: 18000, image: "https://images.unsplash.com/photo-1508182310851-20e9c2f7c4d1?w=400", rating: 4.5, sold: 110, isBestSeller: false, isNew: false, flashSale: false, category: "Roti", stock: 80, variant: "Whole Wheat" },
+        { id: 10, name: "Mille Crepe", price: 55000, discount_price: 45000, image: "https://images.unsplash.com/photo-1535914254981-b5012e21c2f7?w=400", rating: 4.9, sold: 45, isBestSeller: false, isNew: true, flashSale: false, category: "Dessert", stock: 30, variant: "20 Layers" },
+        { id: 11, name: "Almond Croissant", price: 28000, discount_price: 22000, image: "https://images.unsplash.com/photo-1498817696200-8c78eaa5f0d5?w=400", rating: 4.8, sold: 56, isBestSeller: false, isNew: true, flashSale: false, category: "Croissant", stock: 45, variant: "Toasted Almond" },
+        { id: 12, name: "Blueberry Cheesecake", price: 65000, discount_price: 50000, image: "https://images.unsplash.com/photo-1559628234-ba67689d49bb?w=400", rating: 4.9, sold: 72, isBestSeller: true, isNew: false, flashSale: false, category: "Cake", stock: 18, variant: "Creamy Cheesecake" }
     ];
 
     const categories = [
@@ -703,6 +703,23 @@
         { name: "Roti", icon: "fa-baguette" }
     ];
 
+    function getDefaultProductImage(name) {
+        const key = (name || '').toLowerCase();
+        if (key.includes('croissant')) return 'https://images.unsplash.com/photo-1511381939415-67373f4faa98?w=400';
+        if (key.includes('chocolate') || key.includes('cake')) return 'https://images.unsplash.com/photo-1542831371-d531d36971e6?w=400';
+        if (key.includes('strawberry')) return 'https://images.unsplash.com/photo-1505250469679-203ad9ced0cb?w=400';
+        if (key.includes('matcha') || key.includes('latte')) return 'https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?w=400';
+        if (key.includes('red velvet')) return 'https://images.unsplash.com/photo-1517685352821-92cf88aee5a5?w=400';
+        if (key.includes('pain au chocolat') || (key.includes('chocolat') && key.includes('pain'))) return 'https://images.unsplash.com/photo-1517686469429-b73d1d9f7d2d?w=400';
+        if (key.includes('caramel')) return 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400';
+        if (key.includes('tart') || key.includes('fruit')) return 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400';
+        if (key.includes('roti') || key.includes('bread')) return 'https://images.unsplash.com/photo-1508182310851-20e9c2f7c4d1?w=400';
+        if (key.includes('mille')) return 'https://images.unsplash.com/photo-1535914254981-b5012e21c2f7?w=400';
+        if (key.includes('almond')) return 'https://images.unsplash.com/photo-1498817696200-8c78eaa5f0d5?w=400';
+        if (key.includes('blueberry') || key.includes('cheesecake')) return 'https://images.unsplash.com/photo-1559628234-ba67689d49bb?w=400';
+        return 'https://via.placeholder.com/400x300?text=' + encodeURIComponent(name || 'Produk+Bakery');
+    }
+
     // Ambil produk yang ditambahkan via admin (localStorage) dan normalisasi fields
     function getAdminProducts(){
         try{
@@ -712,7 +729,7 @@
                 name: p.name || 'Produk Baru',
                 price: Number(p.price) || 0,
                 discount_price: p.discount_price || null,
-                image: p.image || 'https://via.placeholder.com/400x300?text=No+Image',
+                image: p.image || getDefaultProductImage(p.name),
                 rating: p.rating || 4.5,
                 sold: p.sold || 0,
                 isBestSeller: p.isBestSeller || false,
